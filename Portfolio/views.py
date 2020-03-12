@@ -11,7 +11,7 @@ from django.urls import reverse, reverse_lazy
 class ResumeView(TemplateView):
     template_name = 'Resume.html'
 
-class PortfolioListView(ListView):
+class ProjectListView(ListView):
     model = Project
 
     def get_queryset(self):
@@ -20,19 +20,19 @@ class PortfolioListView(ListView):
 class ProjectDetailView(DetailView):
     model = Project
 
-class CreateProjectView(LoginRequiredMixin,CreateView):
+class ProjectCreateView(LoginRequiredMixin,CreateView):
     login_url = '/Login/'
     redirect_field_name = 'Portfolio/Project_Detail.html'
     form_class = ProjectForm
     model = Project
 
-class UpdateProjectView(LoginRequiredMixin,UpdateView):
+class ProjectUpdateView(LoginRequiredMixin,UpdateView):
     login_url = '/Login/'
     redirect_field_name = 'Portfolio/Project_Detail.html'
     form_class = ProjectForm
     model = Project
 
-class DeleteProjectView(LoginRequiredMixin,DeleteView):
+class ProjectDeleteView(LoginRequiredMixin,DeleteView):
     model = Project
 
     success_url = reverse_lazy('Project_List')
@@ -44,3 +44,5 @@ class DraftListView(LoginRequiredMixin,ListView):
 
     def get_queryset(self):
         return Project.objects.filter(published_date__isnull=True).order_by('created_date')
+
+
