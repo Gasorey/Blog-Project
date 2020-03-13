@@ -20,15 +20,19 @@
 <link rel="stylesheet" href="{% static 'css/Portfolio.css'%}">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{% url resume %}">Resume</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand">CV Gabriel Asorey</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
+        
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item active ">
-              <a class="nav-link" href="{% url 'Portfolio:Project_List' %}">Project List</a>
+              <a class="nav-link" href="{% url 'Resume' %}">Resume</a>
+            </li>
+            <li class="nav-item active ">
+              <a class="nav-link" href="{% url 'Project_List' %}">Project List</a>
             </li>
             <li class="nav-item active">
               <a class="nav-link" href="https://github.com/Gasorey">GitHub</a>
@@ -36,35 +40,39 @@
             </li>
             <li class="nav-item active ">
               <a class="nav-link" href="https://www.linkedin.com/in/gabriel-asorey-45881156/">LinkedIn</a>
+            </li>
           </ul>
-          <ul class="nav navbar-nav navbar-right">
+          <ul class="navbar nav ml-auto">
             {% if user.is_authenticated %}
-            <li>
-                <a href="{% url 'New_Project'%}">New Project</a>
-                <a href="{% url 'Project_Draft_List'%}">Drafts</a>
-                <a href="{% url 'Logout'%}">Logout</a>
+            <li class="nav-item active">
+              <a class="nav-link">Welcome: {{ user.username}}</a>
+            </li>   
+            <li class="nav-item active ">
+              <a class="nav-link" href="{% url 'Project_Create' %}">New Project</a>
             </li>
-
-            <li>
-                <a>Welcome {{ user.username }}</a>
+            <li class="nav-item active ">
+              <a class="nav-link" href="{% url 'Draft_List' %}">Draft</a>
             </li>
-                {% else %}
-
-                    <li><a href="{% url 'Login' %}" class="nav navbar-right"><span class="glyphicon.glyphicon-user"></span></a></li>
-                    <p>Se você estiver curioso pode logar utilizando user:XXXXX Password: XXXX</p>
+            <li class="nav-item active ">
+              <a class="nav-link" href="{% url 'Logout' %}">Logout</a>
+            </li>
+            
+            {% else %}
+            
+            <li><a href="" class="nav navbar-right"><span class="glyphicon.glyphicon-user"></span></a></li>
+            
             
             {% endif %}
-          </ul>
+            
+          </ul>    
+              
         </div>
       </nav>
       <div class="content container">
             <div class="row">
                 <div class="col-md-8">
                     <div class="Project_posts">
-                        {% block content%}
-
-                        {% endblock %}
-
+                        
                     </div>
 
                 </div>
@@ -72,6 +80,9 @@
 
       </div>
 
+      {% block content%}
+
+      {% endblock %}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>

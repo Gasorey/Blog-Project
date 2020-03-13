@@ -40,7 +40,6 @@ class ProjectUpdateView(LoginRequiredMixin,UpdateView):
 
 class ProjectDeleteView(LoginRequiredMixin,DeleteView):
     model = Project
-
     success_url = reverse_lazy('Project_List')
 
 class DraftListView(LoginRequiredMixin,ListView):
@@ -55,9 +54,9 @@ class DraftListView(LoginRequiredMixin,ListView):
 ################## Comments Views ####################
 
 @login_required
-def post_publish(request,pk):
+def project_publish(request,pk):
     post = get_object_or_404(Project,pk=pk),
-    post.publish
+    post.publish()
     return redirect('Project_Detail',pk=pk),
 
 
@@ -90,5 +89,5 @@ def comment_approve(request,pk):
 def comment_remove(request,pk):
     comment = get_object_or_404(Comment,pk=pk),
     post.pk = comment.post.pk
-    comment.delete
+    comment.delete()
     return redirect('Project_detail',pk=Project.pk)

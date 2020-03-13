@@ -1,7 +1,8 @@
 {% extends 'HTML_Base.html' %}
-{% block body_block %}
+{% block content %}
 
 <div class="centerstage">
+    Project list
     {% for Project in Project_list %}
     <div class="Project">
         <h1><a href="{% url 'project_detail' pk=project.pk %}">{{ project.project_name}}</a></h1>
@@ -11,5 +12,5 @@
     </div>
     <a href="{% url 'Project_Detail' pk=Project.pk%}">Comments: {{ project.approve_comments.count }}</a>
 </div>
-
+    {% endfor %}
 {% endblock %}
