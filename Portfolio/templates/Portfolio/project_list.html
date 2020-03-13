@@ -2,7 +2,7 @@
 {% block content %}
 
 <div class="centerstage">
-    Project list
+    
     {% for Project in Project_list %}
     <div class="Project">
         <h1><a href="{% url 'project_detail' pk=project.pk %}">{{ project.project_name}}</a></h1>
