@@ -1,0 +1,15 @@
+{% extends 'HTML_Base.html' %}
+{% block body_block %}
+
+<div class="centerstage">
+    {% for Project in Project_list %}
+    <div class="Project">
+        <h1><a href="{% url 'project_detail' pk=project.pk %}">{{ project.project_name}}</a></h1>
+    </div>
+    <div class="date">
+        <p>Published on:{{ project.published|date:"D M Y" }}</p>
+    </div>
+    <a href="{% url 'Project_Detail' pk=Project.pk%}">Comments: {{ project.approve_comments.count }}</a>
+</div>
+
+{% endblock %}

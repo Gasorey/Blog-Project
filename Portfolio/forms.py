@@ -1,5 +1,5 @@
 from django import forms
-from .import Comment,Project
+from .models import Comment,Project
 
 class ProjectForm(forms.ModelForm):
     

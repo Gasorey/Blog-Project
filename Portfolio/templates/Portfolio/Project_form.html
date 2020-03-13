@@ -1,0 +1,13 @@
+{% extends 'HTML_Base.html' %}
+{% block body_block %}
+    <h1>New Project</h1>
+    <form action="" method="post">
+
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" class="save btn btn-default" name="button">Publicar Novo Projeto</button>
+    </form>
+
+    <script>var editor = new MediumEditor('.editable');</script>
+
+{% endblock %}
