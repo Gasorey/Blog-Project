@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- {% load static %} -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -6,10 +7,71 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+<title>Gabriel Asorey CV</title>
 
-<title>Title</title>
+<!-- medium editor -->
+<script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+<!-- CSS link -->
+<link rel="stylesheet" href="{% static 'css/Portfolio.css'%}">
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url resume %}">Resume</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active ">
+              <a class="nav-link" href="{% url 'Portfolio:Project_List' %}">Project List</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="https://github.com/Gasorey">GitHub</a>
+                </a>
+            </li>
+            <li class="nav-item active ">
+              <a class="nav-link" href="https://www.linkedin.com/in/gabriel-asorey-45881156/">LinkedIn</a>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            {% if user.is_authenticated %}
+            <li>
+                <a href="{% url 'New_Project'%}">New Project</a>
+                <a href="{% url 'Project_Draft_List'%}">Drafts</a>
+                <a href="{% url 'Logout'%}">Logout</a>
+            </li>
+
+            <li>
+                <a>Welcome {{ user.username }}</a>
+            </li>
+                {% else %}
+
+                    <li><a href="{% url 'Login' %}" class="nav navbar-right"><span class="glyphicon.glyphicon-user"></span></a></li>
+                    <p>Se você estiver curioso pode logar utilizando user:XXXXX Password: XXXX</p>
+            
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
+      <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="Project_posts">
+                        {% block content%}
+
+                        {% endblock %}
+
+                    </div>
+
+                </div>
+            </div>
+
+      </div>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
