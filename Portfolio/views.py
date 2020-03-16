@@ -12,7 +12,7 @@ from django.urls import reverse, reverse_lazy
 ########## Resume ##################
  
 class ResumeView(TemplateView):                      
-    template_name = 'Resume.html'
+    template_name = 'Portfolio/resume.html'
 
 
 ############### Project Views #####################
@@ -21,73 +21,73 @@ class ProjectListView(ListView):
     model = Project
 
     def get_queryset(self):
-        return Project.objects.filter(published_date__lte=timezone.now()).order_by('-pubished_date')
+        return Project.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
 
 class ProjectDetailView(DetailView):
     model = Project
 
 class ProjectCreateView(LoginRequiredMixin,CreateView):
     login_url = '/Login/'
-    redirect_field_name = 'Portfolio/Project_Detail.html'
+    redirect_field_name = 'Portfolio/project_detail.html'
     form_class = ProjectForm
     model = Project
 
 class ProjectUpdateView(LoginRequiredMixin,UpdateView):
     login_url = '/Login/'
-    redirect_field_name = 'Portfolio/Project_Detail.html'
+    redirect_field_name = 'Portfolio/project_detail.html'
     form_class = ProjectForm
     model = Project
 
 class ProjectDeleteView(LoginRequiredMixin,DeleteView):
     model = Project
-    success_url = reverse_lazy('Project_List')
+    success_url = reverse_lazy('project_list')
 
 class DraftListView(LoginRequiredMixin,ListView):
     login_url = '/Login/'
-    redirect_field_name = 'Portfolio/Project_list.html'
+    redirect_field_name = 'Portfolio/project_list.html'
     model = Project
 
     def get_queryset(self):
-        return Project.objects.filter(published_date__isnull=True).order_by('created_date')
+        return Project.objects.filter(published_date__isnull=True).order_by('create_date')
 
 
 ################## Comments Views ####################
 
+
 @login_required
-def project_publish(request,pk):
-    post = get_object_or_404(Project,pk=pk),
+def project_publish(request, pk):
+    post = get_object_or_404(Project, pk=pk)
     post.publish()
-    return redirect('Project_Detail',pk=pk),
-
-
-
-
-
+    return redirect('project_detail',pk=pk)
 
 @login_required
-def add_comment_to_project(request,pk):
-    project = get_object_or_404(Project,pk=pk)
-    if request.method == 'POST':
+def add_comment_to_project(request, pk):
+    post = get_object_or_404(Project, pk=pk)
+    if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
-            comment.post = Project
+            comment.post = post
             comment.save()
-            return redirect('Project_Detail',pk=project.pk)
-
+            return redirect('project_detail',pk=pk)
     else:
         form = CommentForm()
-    return render(request,'Portfolio/Comment_Form.html',{'form':form})
+    return render(request, 'Portfolio/comment_form.html', {'form': form})
+
+
+
 
 @login_required
 def comment_approve(request,pk):
-    comment = get_object_or_404(Comment,pk=pk),
+    comment = get_object_or_404(Comment, pk=pk),
     comment.approve()
-    return redirect('Project_Detail',pk=comment.Project.pk)
+    return redirect('project_detail',pk=pk)
+
+
 
 @login_required
-def comment_remove(request,pk):
-    comment = get_object_or_404(Comment,pk=pk),
-    post.pk = comment.post.pk
+def comment_remove(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    post_pk = comment.post.pk
     comment.delete()
-    return redirect('Project_detail',pk=Project.pk)
+    return redirect('project_detail', pk=post_pk)

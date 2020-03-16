@@ -1,0 +1,11 @@
+{% extends 'Portfolio/HTML_Base.html' %}
+{% block content %}
+
+    {% for Project in Projects %}
+        <div class="posts">
+            <p class="date">Created: {{Project.created_date|date:'d-m-Y'}}</p>
+            <h1><a href="{% url 'project_detail' pk=project.pk %}">{{Project.project_name}}</a></h1>
+            <p>{{ Project.description|truncatechars:200}}</p>
+        </div>
+
+{% endblock %}

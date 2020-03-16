@@ -2,16 +2,17 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    path('Project_List',views.ProjectListView.as_view(),name='Project_List'),
-    path('',views.ResumeView.as_view(),name='Resume'),
-    path('Detail/<int:pk>',views.ProjectDetailView.as_view(),name='Project_Detail'),
-    path('Project/new',views.ProjectCreateView.as_view(),name='Project_Create'),
-    path('Project/<int:pk>/Update',views.ProjectUpdateView.as_view(),name='Project_Update'),
-    path('Project/<int:pk>/Delete',views.ProjectDeleteView.as_view(),name='Project_Delete'),
-    path('Drafts/',views.DraftListView.as_view(),name='Draft_List'),
-    path('Project/<int:pk>/Comment',views.add_comment_to_project,name='Comment_Add'),
-    path('Comment/<int:pk>/Approve/',views.comment_approve,name='Comment_Approve'),
-    path('Comment/<int:pk>/Remove/',views.comment_remove,name='Comment_Remove'),
-    path('Project/<int:pk>/Publish', views.project_publish,name='project_publish'),
+    path('',views.ProjectListView.as_view(),name='project_list'),
+    path('resume/',views.ResumeView.as_view(),name='resume'),
+    path('project/<int:pk>',views.ProjectDetailView.as_view(),name='project_detail'),
+    path('project/new',views.ProjectCreateView.as_view(),name='project_create'),
+    path('project/<int:pk>/update',views.ProjectUpdateView.as_view(),name='project_update'),
+    path('project/<int:pk>/delete',views.ProjectDeleteView.as_view(),name='project_delete'),
+    path('project/<int:pk>/publish', views.project_publish,name='project_publish'),
+    path('drafts/',views.DraftListView.as_view(),name='draft_list'),
+    path('project/<int:pk>/comment',views.add_comment_to_project,name='comment_add'),
+    path('comment/<int:pk>/approve/',views.comment_approve,name='comment_approve'),
+    path('comment/<int:pk>/remove/',views.comment_remove,name='comment_remove'),
+    
     
 ]

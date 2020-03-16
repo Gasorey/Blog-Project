@@ -19,7 +19,7 @@ class Project(models.Model):
         return self.comments.filter(approved_comment=True)
     
     def get_absolute_url(self):
-        return reverse('Project_Detail',kwargs={'pk':self.pk})
+        return reverse('project_detail',kwargs={'pk':self.pk})
 
     def __str__(self):
         self.project_name
@@ -32,11 +32,11 @@ class Comment(models.Model):
     approved_comment = models.BooleanField(default=False)
 
     def approve(self):
-        self.approve_comment = True
+        self.approved_comment = True
         self.save()
 
     def get_absolute_url(self):
-        return reverse('Resume')
+        return reverse('project_list')
 
     def __str__(self):
         return self.text

@@ -1,7 +1,7 @@
-{% extends 'HTML_Base.html' %}
+{% extends 'Portfolio/HTML_Base.html' %}
 {% block content %}
     <h1>New Project</h1>
-    <form action="" method="post">
+    <form method="post" class="post-form">
         {% csrf_token %}
         {{form.as_p}}
         <button type="submit" class="save btn btn-default" name="button">Publicar</button>
