@@ -1,8 +1,9 @@
 {% extends 'Portfolio/HTML_Base.html' %}
 {% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/list.css' %}">
+<div class="container">
 
-<div class="centerstage">
-    
     {% for Project in project_list %}
     <div class="Project">
         <h1><a href="{% url 'project_detail' pk=Project.pk %}">{{ Project.project_name}}</a></h1>
@@ -11,6 +12,7 @@
         <p>Published on: {{Project.published_date|date:" M Y"}}</p>
     </div>
     <a href="{% url 'project_detail' pk=Project.pk%}">Comments: {{ Project.approve_comments.count }}</a>
-</div>
+    
     {% endfor %}
-{% endblock %}
+    {% endblock %}
+</div>

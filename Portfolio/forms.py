@@ -11,7 +11,8 @@ class ProjectForm(forms.ModelForm):
 
         widgets = {
             'project_name':forms.TextInput(attrs={'class':'textinputclass'}),
-            'text':forms.Textarea(attrs={'class':'editable medium-editor-textarea postcontent'}),
+            'description':forms.Textarea(attrs={'class':'editable medium-editor-textarea '}),
+            
         }
 
 class CommentForm(forms.ModelForm):
