@@ -13,6 +13,4 @@ urlpatterns = [
     path('project/<int:pk>/comment',views.add_comment_to_project,name='comment_add'),
     path('comment/<int:pk>/approve/',views.comment_approve,name='comment_approve'),
     path('comment/<int:pk>/remove/',views.comment_remove,name='comment_remove'),
-    
-    
 ]

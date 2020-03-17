@@ -60,7 +60,7 @@ def project_publish(request, pk):
     post.publish()
     return redirect('project_detail',pk=pk)
 
-@login_required
+# @login_required
 def add_comment_to_project(request, pk):
     post = get_object_or_404(Project, pk=pk)
     if request.method == "POST":
@@ -78,10 +78,10 @@ def add_comment_to_project(request, pk):
 
 
 @login_required
-def comment_approve(request,pk):
-    comment = get_object_or_404(Comment, pk=pk),
+def comment_approve(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
     comment.approve()
-    return redirect('project_detail',pk=pk)
+    return redirect('project_detail', pk=comment.post.pk)
 
 
 

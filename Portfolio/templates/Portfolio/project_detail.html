@@ -29,13 +29,13 @@
 
                 {{ comment.create_date }}
                 {% if not comment.approve_comment %}
+                   
+                {% endif %}
+                    <p>Posted by: <strong>{{ comment.author }}</strong></p>
+                    <p>{{ comment.text|safe|linebreaks }}</p>
+                    
                     <a class="btn btn-primary" href="{% url 'comment_remove' pk=comment.pk %}"><span class="fa fa-remove"></span>Remove</a>
                     <a class="btn btn-primary" href="{% url 'comment_approve' pk=comment.pk %}"><span class="fa fa-check"></span>Aprove</a>
-                {% endif %}
-
-                    <p>{{ comment.text|safe|linebreaks }}</p>
-                    <p>Posted by: <strong>{{ comment.author }}</strong></p>
-
                 {% endif %} 
                 {% empty %}
                     <br><p>No comments posted.</p>

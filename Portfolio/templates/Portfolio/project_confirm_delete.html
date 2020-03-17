@@ -3,8 +3,8 @@
 
     <form action="" method="post">
         {% csrf_token %}
-        <p>Do you want to DELETE {{ object }}?</p>
-        <input type="submit" value="" class="btn btn-danger" value="Confirm">
+        <p>Do you want to DELETE {{ object.project_name }}?</p>
+        <input type="submit" value="Deletar">
 
     </form>
 

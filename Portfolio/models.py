@@ -21,8 +21,8 @@ class Project(models.Model):
     def get_absolute_url(self):
         return reverse('project_detail',kwargs={'pk':self.pk})
 
-    def __str__(self):
-        self.project_name
+    # def __str__(self):
+    #     self.project_name
 
 class Comment(models.Model):
     post = models.ForeignKey('Portfolio.Project',related_name='comments',on_delete=models.CASCADE)
