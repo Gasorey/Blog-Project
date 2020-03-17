@@ -1,12 +1,16 @@
 {% extends 'Portfolio/HTML_Base.html' %}
 {% block content %}
-    <h1>New Project</h1>
-    <form method="post" class="post-form">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit" class="save btn btn-default" name="button">Publicar</button>
-    </form>
+{% load static %}
+    <div class="borda">
 
-    <script>var editor = new MediumEditor('.editable');</script>
-
+        <h1>New Project</h1>
+        <form method="post" class="post-form">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit" class="save btn btn-default" name="button">Publicar</button>
+        </form>
+        
+        <script>var editor = new MediumEditor('.editable');</script>
+    </div>
+        
 {% endblock %}

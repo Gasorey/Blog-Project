@@ -1,12 +1,17 @@
 {% extends 'Portfolio/HTML_Base.html' %}
 {% block content %}
+{% load static %}
+
+<div class="borda">
+
     <h1>New Comments</h1>
     <form action="" class="comment-form" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Post</button>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Post</button>
     </form>
-   
+    
     <script>var editor = new MediumEditor('.editable');</script>
-
+    
+</div>   
 {% endblock %}
